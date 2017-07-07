@@ -1,0 +1,10 @@
+<div class="content">
+  <div class="col-sm-8 top-center-25 text-center-head">
+    <i class="menu-icon about-news"></i>
+    <h1 class="bread_header"><span class="bc_link up h1_text-header">Company News</span></h1>
+  </div>
+  <div class="col-sm-4 top-center-33 text-center">
+    <a href="https://www.instaforex.com/open_live_account" class="btn btn-white_without_bg">Open trading account</a>
+    <a href="https://www.instaforex.com/register_demo_account" class="btn btn-white_without_bg">Open demo account</a>
+  </div>
+  </div>

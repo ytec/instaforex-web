@@ -1,0 +1,104 @@
+.bonus .getBonus {
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+    color: #333;
+    padding: 10px 0;
+    margin: 0;
+    border-radius: 0 0 4px 4px;
+    background-color: #dcdcdc;
+    font-size: 1.2em;
+}
+
+@media screen and (max-width: 767px) and (min-width: 576px) {
+    .bonus .getBonus {
+      min-width: 285px;
+      margin-left: auto;
+      width: 100%;
+      float: none;
+      margin: auto;
+    }
+}
+
+
+@media screen and (max-width: 767px) and (min-width: 576px) {
+    .openacoount_md-mede_box-button-1 {
+      min-width: 285px;
+      margin-left: auto;
+    }
+}
+
+@media screen and (max-width: 767px) and (min-width: 576px) {
+    .openacoount_md-mede_box-button-2 {
+      min-width: 285px;
+      margin-right: auto;
+    }
+}
+@media screen and (max-width: 575px) and (min-width: 220px) {
+    .openacoount_md-mede_box-button-1 {
+      min-width: auto;
+      margin-left: auto;
+      margin-right: auto;
+    }
+}
+
+@media screen and (max-width: 575px) and (min-width: 220px) {
+    .openacoount_md-mede_box-button-2 {
+      min-width: auto;
+      margin-right: auto;
+      margin-left: auto;
+    }
+}
+
+@media screen and (max-width: 575px) and (min-width: 220px) {
+    .openacoount_md-img_box-button-1 {
+      min-width: auto;
+      margin-left: auto;
+      margin-right: auto;
+    }
+}
+@media screen and (max-width: 575px) and (min-width: 220px) {
+    .openacoount_md-img_box-button-2 {
+      min-width: auto;
+      margin-left: auto;
+      margin-right: auto;
+    }
+}
+
+@media screen and (max-width: 575px) and (min-width: 220px) {
+    .openacoount_md-img_box-button-auto {
+      min-width: auto;
+      margin-left: auto;
+      margin-right: auto;
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .openacoount_md-img_box-1 {
+      text-decoration: none;
+      margin-right: 4px;
+      margin-left: 6px;
+
+
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .openacoount_md-img_box-2 {
+      text-decoration: none;
+      margin-right: 9px;
+      margin-left: 5px
+
+
+    }
+}
+
+.max-width-img-auto-marging{
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+}
+.openacoount_md-img_box-button-2{
+  margin: auto;
+}

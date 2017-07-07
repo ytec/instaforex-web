@@ -1,0 +1,55 @@
+{% load cms_tags staticfiles menu_tags sekizai_tags %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>{% block title %}{% page_attribute "page_title" %}{% endblock title %}</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet"
+				href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="{{ MEDIA_URL }}Home/css/Home_style.css" rel="stylesheet" type="text/css">
+
+	  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script
+		src="//cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js">
+	</script>
+	<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+	</script>
+
+
+{% render_block "css" %}
+</head>
+<body>
+
+{% cms_toolbar %}
+
+
+{% block menu %}
+	{% placeholder "Menu" %}
+{% endblock menu %}
+
+{% placeholder "Head" %}
+
+
+{% block openaccount %}
+	{% include 'openaccount/openaccount.html' %}
+{% endblock openaccount %}
+
+
+{% block Bonos %}
+	{% placeholder "Bonos" %}
+{% endblock Bonos%}
+
+<footer>
+  {% block footer %}
+		{% placeholder "footer" %}
+  {% endblock footer %}
+</footer>
+
+
+
+{% render_block "js" %}
+
+</body>
+</html>

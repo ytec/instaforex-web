@@ -1,0 +1,143 @@
+/* ----------- ИНФОРМЕР КОТИРОВОК ---------- */
+#quotes_informer
+{
+    padding : 0 0 20px;
+    border-bottom : 1px solid #ddd;
+    height:144px;
+    overflow: hidden;
+    position: relative;
+    margin: 15px auto;
+}
+#quotes_informer ul#quotes /* Поле вывода данных */
+{
+    list-style-type : none;
+    display : inline-block;
+    width : 90%;
+    text-align : left;
+    position: absolute;
+    left: 20px;
+    top: 0px;
+}
+#quotes_informer ul#quotes li /* Элементы */
+{
+    display : inline-block;
+    padding : 20px 0;
+    margin : 0 1% 0 0;
+    text-align : center;
+    font-size : 1.2em;
+    color : #666;
+    width : 15%;
+}
+#quotes_informer ul#quotes li img.arrow /* Иконка */
+{
+    width : 11px;
+    height : 10px;
+    display : inline-block;
+    vertical-align : middle;
+    margin : 0 0 5px;
+}
+#quotes_informer ul#quotes li h2.symbol /* Заголовок */
+{
+    display : inline-block;
+    margin : 0 5px;
+    font-size : 1.2em;
+}
+#quotes_informer ul#quotes li h2.symbol a {
+	color: #666;
+	text-decoration: none;
+}
+#quotes_informer ul#quotes li h2.symbol a:hover,
+#quotes_informer ul#quotes li h2.symbol a:focus {
+	text-decoration: underline;
+}
+#quotes_informer ul#quotes li p /* Данные */
+{
+    padding : 10px 0;
+    font-size : 1em;
+
+}
+#quotes_informer ul#quotes li p.quote_ask /* Стоимость */
+{
+    border-bottom : 1px solid #ddd;
+}
+#quotes_informer figure /* Кнопки */
+{
+    text-align : center;
+    display : inline-block;
+    cursor : pointer;
+    position: absolute;
+    width: 105px;
+
+}
+#quotes_informer #all-spreads  {
+    top:34px;
+    right: 18px;
+}
+#quotes_informer #market_quotes  {
+    top:200px;
+    right: 18px;
+}
+#quotes_informer #charts  {
+    top:308px;
+    right: 18px;
+}
+#quotes_informer figure div.icon /* Значки */
+{
+    width : 55px;
+    height : 55px;
+    margin : 0 auto;
+}
+
+#quotes_informer #all-spreads div.icon
+{
+    width : 60px;
+    height : 60px;
+    background-image : url('/../media/socketio/img/button.png');
+    background-position : 0 0;
+}
+#quotes_informer #all-spreads div.icon:hover
+{
+    background-position : 0 -60px;
+}
+#quotes_informer #market_quotes div.icon
+{
+    background: url('/../media/socketio/img/quotes.png') no-repeat center;
+    border-radius: 100px;
+    border: 1px solid #aaa;
+
+}
+#quotes_informer #market_quotes div.icon:hover
+{
+    background-image : url('/../media/socketio/img/quotes_1.png');
+    background-color: #a00e18;
+    border-color: #a00e18;
+
+}
+#quotes_informer #charts div.icon
+{
+    background: url('/../media/socketio/img/charts.png') no-repeat center;
+    border-radius: 100px;
+    border: 1px solid #aaa;
+
+}
+#quotes_informer #charts div.icon:hover
+{
+    background-image : url('/../media/socketio/img/charts_1.png');
+    background-color: #a00e18;
+    border-color: #a00e18;
+}
+
+#quotes_informer #all-spreads div.icon:active
+{
+    background-position : 0 -120px;
+}
+#quotes_informer figure figcaption.title /* Имя кнопки */
+{
+    font-size : 0.8em;
+    color : #555;
+    padding : 5px 0;
+}
+#quotes_informer figure:hover figcaption
+{
+    color : #000;
+}

@@ -1,0 +1,127 @@
+{% load static from staticfiles  %}
+
+<link href="{{ MEDIA_URL }}socketio/css/quotes_insta_informer.css" rel="stylesheet" type="text/css">
+<script src="{{ MEDIA_URL }}socketio/js/socket.io.min.js"></script>
+<script src="{{ MEDIA_URL }}socketio/js/quotes_insta_informer.js"></script>
+<script>
+
+ var socket;
+ var needQuotes = ["EURUSD","GBPUSD","USDJPY","USDCHF","USDCAD","EURJPY",
+                  "EURCHF","GBPJPY","GBPCHF","GOLD","SILVER","EURRUR","USDRUR",
+                  "EURGBP","AUDUSD","AUDCAD","#AA","#AAPL"];
+ var curQuotes  = [];
+     var img_http='https://fxn.instaforex.com/i/img/';
+ $(document).ready(function(){
+     initSocketMain();
+ });
+
+</script>
+<div id="quotes_informer" class="block informer">
+  <ul id="quotes" style="top: 0px;">
+                <li id="symbol_EURUSD" class="animTD_up_light">
+                            <img class="arrow">
+                            <h2 class="symbol"><a target="_blank" title="Más" href="https://www.instaforex.com/sp/quote/EURUSD">EURUSD</a></h2>
+                            <p class="quote_ask"></p>
+                            <p class="quote_bid"></p>
+                        </li><li id="symbol_GBPUSD" class="animTD_down_light">
+                            <img class="arrow">
+                            <h2 class="symbol"><a target="_blank" title="Más" href="https://www.instaforex.com/sp/quote/GBPUSD">GBPUSD</a></h2>
+                            <p class="quote_ask"></p>
+                            <p class="quote_bid"></p>
+                        </li><li id="symbol_USDJPY" class="animTD_down_light">
+                            <img class="arrow" src="https://fxn.instaforex.com/i/img/site/informer/down.png">
+                            <h2 class="symbol"><a target="_blank" title="Más" href="https://www.instaforex.com/sp/quote/USDJPY">USDJPY</a></h2>
+                            <p class="quote_ask">109.11</p>
+                            <p class="quote_bid">109.08</p>
+                        </li><li id="symbol_USDCHF" class="animTD_up_light">
+                            <img class="arrow" src="https://fxn.instaforex.com/i/img/site/informer/up.png">
+                            <h2 class="symbol"><a target="_blank" title="Más" href="https://www.instaforex.com/sp/quote/USDCHF">USDCHF</a></h2>
+                            <p class="quote_ask">0.9965</p>
+                            <p class="quote_bid">0.9960</p>
+                        </li><li id="symbol_USDCAD" class="animTD_down_light">
+                            <img class="arrow" src="https://fxn.instaforex.com/i/img/site/informer/down.png">
+                            <h2 class="symbol"><a target="_blank" title="Más" href="https://www.instaforex.com/sp/quote/USDCAD">USDCAD</a></h2>
+                            <p class="quote_ask">1.3499</p>
+                            <p class="quote_bid">1.3496</p>
+                        </li><li id="symbol_EURJPY" class="animTD_down_light">
+                            <img class="arrow" src="https://fxn.instaforex.com/i/img/site/informer/down.png">
+                            <h2 class="symbol"><a target="_blank" title="Más" href="https://www.instaforex.com/sp/quote/EURJPY">EURJPY</a></h2>
+                            <p class="quote_ask">117.04</p>
+                            <p class="quote_bid">117.01</p>
+                        </li><li id="symbol_EURCHF" class="animTD_up_light">
+                            <img class="arrow" src="https://fxn.instaforex.com/i/img/site/informer/up.png">
+                            <h2 class="symbol"><a target="_blank" title="Más" href="https://www.instaforex.com/sp/quote/EURCHF">EURCHF</a></h2>
+                            <p class="quote_ask">1.0689</p>
+                            <p class="quote_bid">1.0684</p>
+                        </li><li id="symbol_GBPJPY" class="animTD_up_light">
+                            <img class="arrow" src="https://fxn.instaforex.com/i/img/site/informer/up.png">
+                            <h2 class="symbol"><a target="_blank" title="Más" href="https://www.instaforex.com/sp/quote/GBPJPY">GBPJPY</a></h2>
+                            <p class="quote_ask">139.81</p>
+                            <p class="quote_bid">139.74</p>
+                        </li><li id="symbol_GBPCHF" class="animTD_up_light">
+                            <img class="arrow" src="https://fxn.instaforex.com/i/img/site/informer/up.png">
+                            <h2 class="symbol"><a target="_blank" title="Más" href="https://www.instaforex.com/sp/quote/GBPCHF">GBPCHF</a></h2>
+                            <p class="quote_ask">1.2770</p>
+                            <p class="quote_bid">1.2757</p>
+                        </li><li id="symbol_GOLD" class="animTD_down_light">
+                            <img class="arrow" src="https://fxn.instaforex.com/i/img/site/informer/down.png">
+                            <h2 class="symbol"><a target="_blank" title="Más" href="https://www.instaforex.com/sp/quote/GOLD">GOLD</a></h2>
+                            <p class="quote_ask">1284.80</p>
+                            <p class="quote_bid">1284.20</p>
+                        </li><li id="symbol_SILVER">
+                            <img class="arrow" src="https://fxn.instaforex.com/i/img/site/informer/red.png">
+                            <h2 class="symbol"><a target="_blank" title="Más" href="https://www.instaforex.com/sp/quote/SILVER">SILVER</a></h2>
+                            <p class="quote_ask">17.94</p>
+                            <p class="quote_bid">17.9</p>
+                        </li><li id="symbol_EURRUR">
+                            <img class="arrow" src="https://fxn.instaforex.com/i/img/site/informer/red.png">
+                            <h2 class="symbol"><a target="_blank" title="Más" href="https://www.instaforex.com/sp/quote/EURRUR">EURRUR</a></h2>
+                            <p class="quote_ask">60.867</p>
+                            <p class="quote_bid">60.467</p>
+                        </li><li id="symbol_USDRUR">
+                            <img class="arrow" src="https://fxn.instaforex.com/i/img/site/informer/green.png">
+                            <h2 class="symbol"><a target="_blank" title="Más" href="https://www.instaforex.com/sp/quote/USDRUR">USDRUR</a></h2>
+                            <p class="quote_ask">56.723</p>
+                            <p class="quote_bid">56.323</p>
+                        </li><li id="symbol_EURGBP">
+                            <img class="arrow" src="https://fxn.instaforex.com/i/img/site/informer/red.png">
+                            <h2 class="symbol"><a target="_blank" title="Más" href="https://www.instaforex.com/sp/quote/EURGBP">EURGBP</a></h2>
+                            <p class="quote_ask">0.8373</p>
+                            <p class="quote_bid">0.837</p>
+                        </li><li id="symbol_AUDUSD">
+                            <img class="arrow" src="https://fxn.instaforex.com/i/img/site/informer/red.png">
+                            <h2 class="symbol"><a target="_blank" title="Más" href="https://www.instaforex.com/sp/quote/AUDUSD">AUDUSD</a></h2>
+                            <p class="quote_ask">0.7546</p>
+                            <p class="quote_bid">0.7543</p>
+                        </li><li id="symbol_AUDCAD">
+                            <img class="arrow" src="https://fxn.instaforex.com/i/img/site/informer/red.png">
+                            <h2 class="symbol"><a target="_blank" title="Más" href="https://www.instaforex.com/sp/quote/AUDCAD">AUDCAD</a></h2>
+                            <p class="quote_ask">1.0184</p>
+                            <p class="quote_bid">1.0174</p>
+                        </li><li id="symbol_#AA">
+                            <img class="arrow" src="https://fxn.instaforex.com/i/img/site/informer/red.png">
+                            <h2 class="symbol"><a target="_blank" title="Más" href="https://www.instaforex.com/sp/quote/AA">#AA</a></h2>
+                            <p class="quote_ask">31.71</p>
+                            <p class="quote_bid">31.68</p>
+                        </li><li id="symbol_#AAPL">
+                            <img class="arrow" src="https://fxn.instaforex.com/i/img/site/informer/green.png">
+                            <h2 class="symbol"><a target="_blank" title="Más" href="https://www.instaforex.com/sp/quote/AAPL">#AAPL</a></h2>
+                            <p class="quote_ask">142.33</p>
+                            <p class="quote_bid">142.25</p>
+                        </li>
+  </ul>
+        <figure id="all-spreads"><!--Кнопка-->
+        <div class="icon"></div><!--Иконка кнопки-->
+        <figcaption class="title">Ver más</figcaption><!--Имя кнопки-->
+        </figure>
+        <a href="https://www.instaforex.com/sp/quote"><figure id="market_quotes"><!--Кнопка-->
+        <div class="icon"></div><!--Иконка кнопки-->
+        <figcaption class="title">Cotizaciones del mercado</figcaption><!--Имя кнопки-->
+        </figure></a>
+        <a href="https://www.instaforex.com/sp/financial_chart/"><figure id="charts"><!--Кнопка-->
+        <div class="icon"></div><!--Иконка кнопки-->
+        <figcaption class="title">Gráficos</figcaption><!--Имя кнопки-->
+        </figure></a>
+
+
+</div>

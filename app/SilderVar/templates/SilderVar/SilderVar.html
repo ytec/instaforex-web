@@ -1,0 +1,37 @@
+{% load static from staticfiles  %}
+
+<link href="{{ MEDIA_URL }}SilderVar/css/jquery.bxslider.css" rel="stylesheet" type="text/css">
+<script src="{{ MEDIA_URL }}SilderVar/js/jquery.bxslider.js"></script>
+
+<script>
+	$(document).ready(function(){
+  		$('.bxslider').bxSlider();
+	});
+</script>
+
+<div class="hidden-md-down" id="silder">
+	<ul class="bxslider">
+
+		{% for i in photos%}
+		<li class="image-li" style="visibility: hidden;"><img src="{{i}}"/>
+			<a href="/hola" style="background-image: url('{{i}}')" >
+				<div class="slider_content">
+					<div class="titel">
+
+					</div>
+					<div class="text">
+						<p class="text-image_up">Esteta es la primera imagen</p>
+					</div>
+				</div>
+			</a>
+		</li>
+		{% endfor %}
+
+	</ul>
+</div>
+
+<script>
+	$( document ).ready(function() {
+    	$(".image-li").css("visibility","visible");
+	});
+</script>

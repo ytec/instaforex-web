@@ -1,0 +1,69 @@
+{% load cms_tags staticfiles menu_tags sekizai_tags %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>{% block title %}{% page_attribute "page_title" %}{% endblock title %}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+                        integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+                        crossorigin="anonymous">
+
+  <link href="{% static 'css/Content.css' %}" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+            integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+            crossorigin="anonymous"></script>
+
+  {% render_block "css" %}
+
+</head>
+<body>
+
+{% cms_toolbar %}
+
+
+<div class="container">
+{% placeholder "menu" %}
+</div>
+
+
+<div class="breadcrumbs col-sm-12">
+  {% placeholder "head" %}
+</div>
+
+<div>
+  {% placeholder "Content_head" %}
+</div>
+
+<div class="container-body col-xs-12 text-center-head ">
+  <div class="row justify-content-md-center">
+    <div class="col sidenav hidden-lg-down max_dimension ">
+      <p><a href="#">Link</a></p>
+      <p><a href="#">Link</a></p>
+      <p><a href="#">Link</a></p>
+    </div>
+    <div class="col-lg-7 text-left text-left">
+	    {% placeholder "content" %}
+    </div>
+    <div class="col sidenav no-float hidden-md-down  visible-md visible-lg max_dimension ">
+      <div class="well">
+        <iframe src="https://informers.instaforex.com/en/exchange_rate/run_inst2" style=" min-height: 220px; overflow: hidden;" >
+
+        </iframe>
+      </div>
+      <div class="well">
+        <p>ADS</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid text-center">
+  <p>Footer Text</p>
+</footer>
+
+{% render_block "js" %}
+
+</body>
+</html>

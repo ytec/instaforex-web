@@ -1,0 +1,28 @@
+<div id="block-bonuses" class="text-center">
+
+    <h3>Bonos de InstaForex</h3>
+    <p>InstaForex ofrece a sus clientes la gama más amplia de bonos</p>
+    <div class="hr">
+		    <a href="#block-bonuses-content" class="toggle-btn hidden-sm hidden-md hidden-lg"></a>
+    </div>
+
+	<div id="block-bonuses-content" class="div-bonus block">
+      {% for b in blocksbonus %}
+        <div class="col-md-4 bonuses">
+            <a href="{{b.link}}" class="bonus">
+                <div class="bonus-icon bonus-command"></div>
+                <h4>{{b.titel}}</h4>
+                <p class="p-min-height">{{b.text}}</p>
+                <div class="getBonus">
+                    <div class="icon"></div>
+                    <div class="title">{{b.botton}}</div>
+                </div>
+            </a>
+        </div>
+      {% endfor %}
+		<br>
+		<div class="col-md-12 bonus_link">
+			<a href="https://www.instaforex.com/sp/instaforex_bonuses" class="white-rounded-button">Todos los bonos </a>
+		</div>
+	</div>
+</div>

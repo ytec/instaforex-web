@@ -1,0 +1,97 @@
+{% load staticfiles menu_tags %}
+
+<link href="{{ MEDIA_URL }}Custom_Menu/css/Menu.css" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}Custom_Menu/css/menu_style.css" rel="stylesheet" type="text/css">
+
+<script>
+
+var num = 0; //number of pixels before modifying styles
+
+$(window).bind('scroll', function () {
+    if ($(window).scrollTop() > num) {
+        $('.menu').addClass('fixed');
+    } else {
+        $('.menu').removeClass('fixed');
+    }
+});
+</script>
+<header>
+  {% for m in Menus %}
+  <div class="container menu">
+  <nav class="navbar navbar-default">
+      <div class="navbar-header">
+  		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
+  			<span class="sr-only">Toggle navigation</span>
+  			<span class="icon-bar"></span>
+  			<span class="icon-bar"></span>
+  			<span class="icon-bar"></span>
+  		</button>
+  	</div>
+
+  	<div class="collapse navbar-collapse js-navbar-collapse">
+      <a class="navbar-brand" href="/"><img width="210" height="47"
+                                            src="{{ MEDIA_URL }}Custom_Menu/img/logo.png"></a>
+      {% for c in m.Category %}
+  		<ul class="nav navbar-nav">
+  			<li class="dropdown mega-dropdown">
+
+  				<a href="#" class="dropdown-toggle"
+             data-toggle="dropdown">{{c.Titel_Category}}
+             <span class="glyphicon glyphicon-chevron-down pull-right"></span></a>
+
+  				<ul class="dropdown-menu mega-dropdown-menu">
+
+  					<li class="col-sm-3 ">
+  						<ul>
+
+  							<li class="dropdown-header">New in Stores</li>
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                  <div class="carousel-inner">
+                    {% for b in c.Banner %}
+                      <div class="item {% if forloop.counter == 1 %} active {% endif %}">
+                        <a href="#"><img src="{{b.Banner_Image}}" class="img-responsive" alt="product 3"></a>
+                        <h4><small></small></h4>
+                        <button class="btn btn-primary" type="button">49,99 €
+                        </button> <button href="#" class="btn btn-default"
+                                          type="button"><span class="glyphicon glyphicon-heart">
+                                          </span> Promociones</button>
+                      </div><!-- End Item -->
+                    {% endfor %}
+                    </div><!-- End Carousel Inner -->
+                  </div><!-- /.carousel -->
+                <li class="divider"></li>
+                <li><a href="#">View all Collection <span class="glyphicon glyphicon-chevron-right pull-right"></span></a></li>
+
+              </ul>
+  					</li>
+            {% for P in c.Pages %}
+  					<li class="col-sm-3">
+  						<ul>
+  							<li class="dropdown-header">{{ P.Titel_Pages }}</li>
+                {% for p in P.Page %}
+                <li><a href="#">Easy to customize</a></li>
+                {% endfor %}
+  							<li class="divider"></li>
+  						</ul>
+  					</li>
+            {% endfor %}
+
+          </ul>
+
+
+
+  			</li>
+  		</ul>
+      {% endfor %}
+    </div>
+
+  </nav>
+  </div>
+  {% endfor %}
+</header>
+
+<script>
+
+
+
+</script>

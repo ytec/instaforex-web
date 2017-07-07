@@ -1,0 +1,89 @@
+/* Remove the navbar's default margin-bottom and rounded borders */
+.navbar-nenu-main {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+.center-menu{
+  max-width: 1200px;
+  margin-left: auto;
+  width: 100%;
+}
+header{
+  height: 97px;
+  z-index: 1;
+}
+.navbar-brand {
+    float: left;
+    height: 80px;
+    padding: 15px 15px;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+.navbar{
+  z-index: 1;
+}
+
+.navbar-toggle{
+  top:15px;
+}
+
+.navbar-nav{
+  margin-top:15px;
+}
+
+.fixed {
+    position:fixed;
+    top:0;
+    z-index: 1;
+}
+header{
+  height: 80px;
+}
+
+.mega-dropdown-menu{
+  margin-left: -5px;
+}
+
+.center_left-menu {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+nav > ul > li {
+    text-align: center;
+}
+
+nav > div > ul > li.open::after {
+  content: "";
+  border-top: 17px solid #ccc;
+  border-right: 19px solid transparent;
+  border-left: 19px solid transparent;
+  position: absolute;
+  top: 81px;
+  z-index: 8;
+  margin: 0px 0px 0px -22px;
+
+}
+nav > div > ul > li.open::before {
+  content: "";
+  border-top: 15px solid #fff;
+  border-right: 17px solid transparent;
+  border-left: 17px solid transparent;
+  position: absolute;
+  top: 81px;
+  z-index: 999999;
+  background-color: rgba(121,0,0,.95);
+  margin: 0px 0 0px -20px;
+}
+nav > div > ul > li > ul {
+    text-align: center;
+}
+
+.collapse {
+  max-width: 1200px;
+  margin: auto;
+}
