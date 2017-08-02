@@ -2,7 +2,7 @@ from django.db import models
 from cms.models import CMSPlugin
 from cms.models import Page
 
-from app.page.models import page, Sub_Pages
+from app.pages.models import page, Sub_Pages
 
 class Sub_Pages_menu(models.Model):
     name = models.CharField(max_length=50, default="Pagina")
