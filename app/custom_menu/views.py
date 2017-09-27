@@ -17,7 +17,6 @@ class Custom_menu_data(CMSPluginBase):
         Dicc = {}
 
         pk = set_pk
-        print(pk)
         M = Menu.objects.get(pk=pk)
 
         id_menu = M.pk
@@ -109,14 +108,14 @@ class Custom_menu_data(CMSPluginBase):
                         URL_external_subpages = b.url
                         subPage = Pages_external
                         subpages =  {
-                                'id_Categoria' : id_Categoria,
-                                'id_page' : id_page,
-                                'id_subpages' : id_subpages,
-                                'Titel_subpages' : Titel_subpages,
-                                'Titel_external_subpages' : Titel_external_subpages,
-                                'URL_subpages' : URL_subpages,
-                                'URL_external_subpages' : URL_external_subpages,
-                            }
+                                    'id_Categoria' : id_Categoria,
+                                    'id_page' : id_page,
+                                    'id_subpages' : id_subpages,
+                                    'Titel_subpages' : Titel_subpages,
+                                    'Titel_external_subpages' : Titel_external_subpages,
+                                    'URL_subpages' : URL_subpages,
+                                    'URL_external_subpages' : URL_external_subpages,
+                                    }
                         dicc_subpages.append(subpages)
                     Dicc_subpages = { 'SubPages' : dicc_subpages, }
                     dicc_subpages = []

@@ -155,9 +155,6 @@ INSTALLED_APPS = (
     'app.socketio',
     'app.custom_menu',
     'app.pages',
-    'rest_framework',
-    'app.api',
-
 )
 
 LANGUAGES = (

@@ -26,8 +26,3 @@ suds-py3
 #
 #requests>=2.13.0
 #rollbar>=0.13.11
-
-#rest api
-djangorestframework
-markdown                # Markdown support for the browsable API.
-django-filter           # Filtering support
