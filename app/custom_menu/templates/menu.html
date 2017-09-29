@@ -20,7 +20,8 @@ $(window).bind('scroll', function () {
   <div class="container menu">
   <nav class="navbar navbar-default">
       <div class="navbar-header">
-  		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
+  		<button class="navbar-toggle" type="button" data-toggle="collapse"
+              data-target=".js-navbar-collapse">
   			<span class="sr-only">Toggle navigation</span>
   			<span class="icon-bar"></span>
   			<span class="icon-bar"></span>
@@ -30,7 +31,7 @@ $(window).bind('scroll', function () {
 
   	<div class="collapse navbar-collapse js-navbar-collapse">
       <a class="navbar-brand" href="/"><img width="210" height="47"
-                                            src="{{ MEDIA_URL }}Custom_Menu/img/logo.png"></a>
+          src="{{ MEDIA_URL }}Custom_Menu/img/logo.png"></a>
       {% for c in m.Category %}
   		<ul class="nav navbar-nav">
   			<li class="dropdown mega-dropdown">

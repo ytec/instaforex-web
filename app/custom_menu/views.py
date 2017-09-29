@@ -72,7 +72,7 @@ class Custom_menu_data(CMSPluginBase):
                         'Titel_Pages' : Titel_Pages,
                         }
 
-                for h in s.page.all():
+                for h in s.Pages.all():
                     id_Categoria = l.pk
                     id_pages = s.pk
                     id_page = h.pk
@@ -97,34 +97,35 @@ class Custom_menu_data(CMSPluginBase):
                             'Position_X_Icon' : Position_X_Icon,
                             'Position_Y_Icon' : Position_Y_Icon,
                             }
-                    for b in h.subpages.all():
-                        id_Categoria = l.pk
-                        id_page = h.pk
-                        id_subpages = b.pk
-                        Titel_subpages = b.Pages_external.get_page_title()
-                        Titel_external_subpages = b.titel
-                        Name_subpages = b.name
-                        URL_subpages = b.Pages_external.get_absolute_url()
-                        URL_external_subpages = b.url
-                        subPage = Pages_external
-                        subpages =  {
-                                    'id_Categoria' : id_Categoria,
-                                    'id_page' : id_page,
-                                    'id_subpages' : id_subpages,
-                                    'Titel_subpages' : Titel_subpages,
-                                    'Titel_external_subpages' : Titel_external_subpages,
-                                    'URL_subpages' : URL_subpages,
-                                    'URL_external_subpages' : URL_external_subpages,
-                                    }
-                        dicc_subpages.append(subpages)
-                    Dicc_subpages = { 'SubPages' : dicc_subpages, }
-                    dicc_subpages = []
-                    page.update(Dicc_subpages)
-                    dicc_page.append(page)
+                    dicc_pages.append(pages)
+                for b in s.Sub_Pages.all():
+                    id_Categoria = l.pk
+                    id_page = h.pk
+                    id_subpages = b.pk
+                    Titel_subpages = b.Pages_external.get_page_title()
+                    Titel_external_subpages = b.titel
+                    Name_subpages = b.name
+                    URL_subpages = b.Pages_external.get_absolute_url()
+                    URL_external_subpages = b.url
+                    subPage = Pages_external
+                    subpages =  {
+                                'id_Categoria' : id_Categoria,
+                                'id_page' : id_page,
+                                'id_subpages' : id_subpages,
+                                'Titel_subpages' : Titel_subpages,
+                                'Titel_external_subpages' : Titel_external_subpages,
+                                'URL_subpages' : URL_subpages,
+                                'URL_external_subpages' : URL_external_subpages,
+                                }
+                    dicc_subpages.append(subpages)
+                Dicc_subpages = { 'SubPages' : dicc_subpages, }
+                dicc_subpages = []
+                page.update(Dicc_subpages)
+                dicc_page.append(page)
                 Dicc_page = { 'Page' : dicc_page, }
                 dicc_page = []
                 pages.update(Dicc_page)
-                dicc_pages.append(pages)
+
             Dicc_Pages = { 'Pages' : dicc_pages, }
             dicc_pages = []
             category.update(Dicc_Pages)

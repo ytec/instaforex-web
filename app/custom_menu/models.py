@@ -10,7 +10,7 @@ class Sub_Pages_menu(models.Model):
                             default='Custom_Menu/img/icon/default.png')
     X = models.CharField(max_length=4, blank=True)
     Y = models.CharField(max_length=4, blank=True)
-    page = models.ForeignKey(Sub_Pages)
+    page = models.ManyToManyField(Sub_Pages)
 
     def __str__(self):
         return self.name
@@ -21,15 +21,14 @@ class page_menu(models.Model):
                             default='Custom_Menu/img/icon/default.png')
     X = models.CharField(max_length=4, blank=True)
     Y = models.CharField(max_length=4, blank=True)
-    page = models.ForeignKey(page)
-    Sub_Pages = models.ManyToManyField(Sub_Pages_menu)
+    page = models.ManyToManyField(page)
 
     def __str__(self):
         return self.name
 class Pages(models.Model):
     name = models.CharField(max_length=50, default="Pagina")
-    Pages = models.ManyToManyField(page_menu)
-
+    Pages = models.ManyToManyField(page_menu, blank=True)
+    Sub_Pages = models.ManyToManyField(Sub_Pages_menu, blank=True)
     def __str__(self):
         return self.name
 

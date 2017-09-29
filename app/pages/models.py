@@ -1,6 +1,7 @@
 from django.db import models
 from cms.models import Page
 
+
 class Sub_Pages(models.Model):
     name = models.CharField(max_length=50, default="Pagina")
     description = models.TextField(blank=True)
@@ -8,7 +9,7 @@ class Sub_Pages(models.Model):
                              default='Titulo pagina ')
     url = models.URLField(max_length=100, blank=True)
 
-    page_external = models.ForeignKey(Page)
+    page_external = models.ForeignKey(Page, default=1)
     Level = models.CharField(max_length=3, default='1', blank=True)
 
     def __str__(self):
