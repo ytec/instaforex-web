@@ -26,3 +26,6 @@ suds-py3
 #
 #requests>=2.13.0
 #rollbar>=0.13.11
+
+#sql
+sqlparse

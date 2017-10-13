@@ -17,7 +17,5 @@ class custom_menu(CMSPluginBase):
 
     def render(self, context, instance, placeholder,):
         context['Menus'] = Custom_menu_data.get(instance.pk)
-        print(context['Menus'])
-        print(instance.pk)
         return context
 plugin_pool.register_plugin(custom_menu)

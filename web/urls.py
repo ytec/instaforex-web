@@ -21,6 +21,7 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
     url(r'^admin/', include(admin.site.urls)),  # NOQA
     url(r'^', include('cms.urls')),
+    url(r'^open/', include('app.open.urls')),
 )
 
 # This is only needed when using runserver.

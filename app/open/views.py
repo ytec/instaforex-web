@@ -1,32 +1,28 @@
-from django.shortcuts import render
-from django.http import request
-from suds.client import Client
+from .models import OpenAccountReal, OpenAccountDemo, OpenAccountAnonymous
 
-# Create your views here.
 
-def OpenAccountReal():
+def openAccountReal(request):
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            pass
+
+def openAccountDemo():
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            Open = form.save(commit=False)
     pass
 
-def OpenAccountDemo():
-    pass
-
-def OpenAccountAnonymous():
-    client = Client('http://client-api.instaforex.com/soapservices/OpenAccount.svc?wsdl')
-
-    openaccount = client.factory.create('AnonymousAccount')
-
-    openaccount.AffiliateCode = ""
-    openaccount.Country = ""
-    openaccount.Domain = ""
-    openaccount.Email = ""
-    openaccount.Name = ""
-    openaccount.NotificationLanguage['value'] = "En"
-    # (Language){
-    #  En = "En"
-    #  Ru = "Ru"
-    # }
-    openaccount.Phone = ""
-
-    result = client.service.OpenAnonymousAccount(openaccount)
-
-    print(result)
+def openAccountAnonymous():
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            Open = form.save(commit=False)
+            post.author = request.user
+            post.published_date = timezone.now()
+            post.save()
+            return redirect('post_detail', pk=post.pk)
+    else:
+        form = PostForm()
+    return render(request, 'blog/post_edit.html', {'form': form})
