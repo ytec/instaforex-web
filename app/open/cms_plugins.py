@@ -16,7 +16,7 @@ class Open(CMSPluginBase):
         Form = form.objects.get(pk=instance.pk)
         FormName = Form.Form.name
         c = context
-        
+
         if FormName == "Real":
             Dicc_name = { 'name' : FormName, }
         elif FormName == "Demo":
@@ -27,6 +27,5 @@ class Open(CMSPluginBase):
             Dicc_name = { 'name' : "Demo" }
 
         context['open'] = Dicc_name
-        print(context['open'])
         return context
 plugin_pool.register_plugin(Open)

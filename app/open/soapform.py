@@ -10,7 +10,7 @@ def openaccountReal():
 def openaccountDemo():
     pass
 
-def openaccountAnonymous():
+def openaccountAnonymous(data):
     client = Client('http://client-api.instaforex.com/soapservices/OpenAccount.svc?wsdl')
 
     openaccount = client.factory.create('AnonymousAccount')
