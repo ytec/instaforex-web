@@ -1,0 +1,27 @@
+version: '3.2'
+services:
+  db:
+    image: postgres:9.5
+    environment:
+      - POSTGRES_PASSWORD=instaforex
+      - POSTGRES_USER=admin
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - instaforex-db-data:/var/lib/postgresql/data/pgdata
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/var/instaforex
+      - type: bind
+        source: ./
+        target: /var/instaforex
+    entrypoint: python3 /var/instaforex/manage.py runserver
+volumes:
+  web:
+  instaforex-db-data:
