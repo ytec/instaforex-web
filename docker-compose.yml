@@ -16,12 +16,12 @@ services:
       - db
     ports:
       - "8000:8000"
-    volumes:
-      - ./:/var/instaforex
-      - type: bind
-        source: ./
-        target: /var/instaforex
-    entrypoint: python3 /var/instaforex/manage.py runserver
+#    volumes:
+#      - ./:/var/instaforex
+#      - type: bind
+#        source: ./
+#        target: /var/instaforex
+#    entrypoint: python3 /var/instaforex/manage.py runserver
 volumes:
-  web:
+#  web:
   instaforex-db-data:

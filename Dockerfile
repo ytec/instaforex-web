@@ -12,5 +12,6 @@ RUN apt-get update \
 
 RUN mkdir /var/instaforex
 COPY ./ /var/instaforex
-VOLUME ["/var/instaforex/",]
 RUN pip3 install -r /var/instaforex/requirements.txt
+CMD python3 /var/instaforex/manage.py runserver
+EXPOSE 8000
