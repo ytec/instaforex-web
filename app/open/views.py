@@ -3,23 +3,24 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 
 from .models import OpenAccountReal, OpenAccountDemo, OpenAccountAnonymous
-from .form import FormModel
+from .form import FormModelAnonymus, FormModelDemo, FormModelReal
 from .soapform import openaccountReal, openaccountDemo, openaccountAnonymous
+from .passworsrandom import id_generator
 
 
 def openAccountReal(request):
     if request.method == "POST":
         print('post')
-        form = FormModel(request.POST)
+        form = FormModelReal(request.POST)
         print(form.errors)
         if form.is_valid():
             print('isvalit')
             AccountType = request.POST.get('AccountType')
             #Tienen de estar unidos --------->
-            direcc = request.POST.get('direcc')
-            direcc2 = request.POST.get('direcc2')
+            Direcc = request.POST.get('Direcc')
+            Direcc2 = request.POST.get('Direcc2')
             #<-------------------------------
-            city = request.POST.get('city')
+            City = request.POST.get('City')
             Country = request.POST.get('Country')
             Domain = request.POST.get('Domain')
             Email = request.POST.get('Email')
@@ -27,8 +28,8 @@ def openAccountReal(request):
             Leverage = request.POST.get('Leverage')
             #<-----------------------------
             #Tienen de estar unidos --------->
-            name = request.POST.get('name')
-            surnames = request.POST.get('surnames')
+            Name = request.POST.get('Name')
+            SurNames = request.POST.get('SurNames')
             #<-------------------------------
             NotificationLanguage = request.POST.get('NotificationLanguage')
             Phone = request.POST.get('Phone')
@@ -47,15 +48,6 @@ def openAccountReal(request):
 
 
 
-
-            #Is For Mass Marketing
-            IsForMassMarketing = ''
-            OpenAccountReal.name = name
-            print(name)
-            template = loader.get_template('open/register.html')
-            print(form)
-            form.clean()
-            print(form)
             return HttpResponseRedirect('/es/')
         else:
             print('ssnot')
@@ -63,14 +55,14 @@ def openAccountReal(request):
             return HttpResponse(template.render(request))
 def openAccountDemo():
     if request.method == "POST":
-        form = FormModel(request.POST)
+        form = FormModelDemo(request.POST)
         if FormModel.is_valid():
             AccountType = request.POST.get('AccountType')
             #Tienen de estar unidos --------->
-            direcc = request.POST.get('direcc')
-            direcc2 = request.POST.get('direcc2')
+            Direcc = request.POST.get('Direcc')
+            Direcc2 = request.POST.get('Direcc2')
             #<-------------------------------
-            city = request.POST.get('city')
+            City = request.POST.get('City')
             Country = request.POST.get('Country')
             Domain = request.POST.get('Domain')
             Email = request.POST.get('Email')
@@ -79,8 +71,8 @@ def openAccountDemo():
             Leverage = request.POST.get('Leverage')
             #<-----------------------------
             #Tienen de estar unidos --------->
-            name = request.POST.get('name')
-            surnames = request.POST.get('surnames')
+            Name = request.POST.get('Name')
+            SurNames = request.POST.get('SurNames')
             #<-------------------------------
             NotificationLanguage = request.POST.get('NotificationLanguage')
             Phone = request.POST.get('Phone')
@@ -100,22 +92,25 @@ def openAccountDemo():
             #<-------------------------------
 
             language = request.POST.get('language')
-
+            if InvestorPassword == "":
+                InvestorPassword = id_generator()
+            else:
+                pass
             pass
 
 def openAccountAnonymous():
     if request.method == "POST":
-        form = FormModel(request.POST)
+        form = FormModelAnonymus(request.POST)
         if form.is_valid():
-            name = request.POST.get('name')
-            surnames = request.POST.get('surnames')
-            direcc = request.POST.get('direcc')
-            direcc2 = request.POST.get('direcc2')
-            city = request.POST.get('city')
-            cp = request.POST.get('cp')
+            Name = request.POST.get('Name')
+            SurNames = request.POST.get('SurNames')
+            Direcc = request.POST.get('Direcc')
+            Direcc2 = request.POST.get('Direcc2')
+            City = request.POST.get('City')
+            ZipCode = request.POST.get('ZipCode')
             language = request.POST.get('language')
-            email = request.POST.get('email')
-            phone_number = request.POST.get('phone_number')
+            email = request.POST.get('Email')
+            Phone = request.POST.get('Phone')
 
 
             return redirect('post_detail', pk=post.pk)

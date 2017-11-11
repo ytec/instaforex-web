@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+from suds.client import Client
+
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 from django.utils.translation import ugettext_lazy as _
@@ -16,11 +18,29 @@ class Open(CMSPluginBase):
         Form = form.objects.get(pk=instance.pk)
         FormName = Form.Form.name
         c = context
+        client = Client('http://client-api.instaforex.com/soapservices/OpenAccount.svc?wsdl')
 
         if FormName == "Real":
-            Dicc_name = { 'name' : FormName, }
+            AccountType = client.factory.create('AccountType')
+            Dicc_AccountType = []
+            for s in AccountType:
+                d = {s[0] : s[1]}
+                Dicc_AccountType.append(d)
+
+            Language = client.factory.create('Language')
+            AccountCurrency = client.factory.create('AccountCurrency')
+            TraderType = client.factory.create('TraderType')
+            Dicc_name = { 'name' : FormName,
+                          'AccountType' : Dicc_AccountType,
+                          'Language' : Language,
+                          'AccountCurrency' : AccountCurrency,
+                          'TraderType' : TraderType,
+                        }
+            print(Dicc_name)
         elif FormName == "Demo":
+
             Dicc_name = { 'name' : FormName }
+
         elif FormName == "Anonymous":
             Dicc_name = { 'name' : FormName }
         else :
