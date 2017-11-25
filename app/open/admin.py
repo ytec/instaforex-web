@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import OpenAccountReal, OpenAccountDemo, OpenAccountAnonymous
 
-# Register your models here.
+admin.site.register(OpenAccountReal)
+admin.site.register(OpenAccountDemo)
+admin.site.register(OpenAccountAnonymous)

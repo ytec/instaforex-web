@@ -46,7 +46,7 @@ class FormModelDemo(forms.Form):
     AccountType = forms.CharField(max_length=30,initial="AccountType")
     Leverage = forms.CharField(max_length=30,initial="Leverage")
     NotificationLanguage = forms.CharField(max_length=30,initial="AccountType")
-    Currency = forms.CharField(max_length=30,initial="Currency")
+    Currency = forms.CharField(max_length=4,initial="Currency")
     DateOfBirth = forms.DateTimeField()
     AffiliateCode = forms.CharField(max_length=10,initial="1234")
     InitialDeposit = forms.CharField(max_length=20,initial="1000" )

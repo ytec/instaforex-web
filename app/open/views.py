@@ -15,38 +15,60 @@ def openAccountReal(request):
         print(form.errors)
         if form.is_valid():
             print('isvalit')
-            AccountType = request.POST.get('AccountType')
+            affiliatecCode = '1234'
+
+            AccountType = request.POST.get('AccountType'),
             #Tienen de estar unidos --------->
-            Direcc = request.POST.get('Direcc')
-            Direcc2 = request.POST.get('Direcc2')
+            Direcc = request.POST.get('Direcc'),
+            Direcc2 = request.POST.get('Direcc2'),
             #<-------------------------------
-            City = request.POST.get('City')
-            Country = request.POST.get('Country')
-            Domain = request.POST.get('Domain')
-            Email = request.POST.get('Email')
+            City = request.POST.get('City'),
+            Country = request.POST.get('Country'),
+            Domain = request.POST.get('Domain'),
+            Email = request.POST.get('Email'),
             #Nivel de apalancamiento ----->
-            Leverage = request.POST.get('Leverage')
+            Leverage = request.POST.get('Leverage'),
             #<-----------------------------
             #Tienen de estar unidos --------->
-            Name = request.POST.get('Name')
-            SurNames = request.POST.get('SurNames')
+            Name = request.POST.get('Name'),
+            SurNames = request.POST.get('SurNames'),
             #<-------------------------------
-            NotificationLanguage = request.POST.get('NotificationLanguage')
-            Phone = request.POST.get('Phone')
+            NotificationLanguage = request.POST.get('NotificationLanguage'),
+            Phone = request.POST.get('Phone'),
 
-            State = request.POST.get('State')
-            ZipCode = request.POST.get('ZipCode')
-            AffiliateCode = affiliatecCode
-            Currency = request.POST.get('Currency')
-            DateOfBirth = request.POST.get('DateOfBirth')
+            State = request.POST.get('State'),
+            ZipCode = request.POST.get('ZipCode'),
+            AffiliateCode = affiliatecCode,
+            Currency = request.POST.get('Currency'),
+            DateOfBirth = request.POST.get('DateOfBirth'),
 
             #Datos de los dispositivos ----->
 
             #<-------------------------------
 
-            language = request.POST.get('language')
+            Language = request.POST.get('language'),
 
+            OpenAccountReal.AccountType = AccountType
+            OpenAccountReal.Direcc = Direcc
+            OpenAccountReal.Direcc2 = Direcc2
+            OpenAccountReal.City = City
+            OpenAccountReal.Country = Country
 
+            OpenAccountReal.Email = Email
+            OpenAccountReal.Leverage = Leverage
+            OpenAccountReal.Name = Name
+            OpenAccountReal.SurNames = SurNames
+            OpenAccountReal.NotificationLanguage = NotificationLanguage
+            OpenAccountReal.Phone = Phone
+            OpenAccountReal.State = State
+            OpenAccountReal.ZipCode =ZipCode
+
+            OpenAccountReal.Currency = Currency
+            OpenAccountReal.DateOfBirth = DateOfBirth
+
+            OpenAccountReal.Language = Language
+
+            OpenAccountReal.save()
 
             return HttpResponseRedirect('/es/')
         else:
@@ -90,6 +112,33 @@ def openAccountDemo():
             #Datos de los dispositivos ----->
 
             #<-------------------------------
+
+            OpenAccountDemo.AccountType = AccountType
+            OpenAccountDemo.Direcc = Direcc
+            OpenAccountDemo.Direcc2 = Direcc2
+            OpenAccountDemo.City = City
+            OpenAccountDemo.Country = Country
+
+            OpenAccountDemo.Email = Email
+            OpenAccountDemo.Leverage = Leverage
+            OpenAccountDemo.Name = Name
+            OpenAccountDemo.SurNames = SurNames
+            OpenAccountDemo.NotificationLanguage = NotificationLanguage
+            OpenAccountDemo.Phone = Phone
+            OpenAccountDemo.State = State
+            OpenAccountDemo.ZipCode =ZipCode
+
+            OpenAccountDemo.InitialDeposit = InitialDeposit
+            OpenAccountDemo.Currency = Currency
+
+            OpenAccountDemo.InvestorPassword = InvestorPassword
+
+            OpenAccountDemo.DateOfBirth = DateOfBirth
+
+            OpenAccountDemo.Language = Language
+
+            OpenAccountDemo.save()
+
 
             language = request.POST.get('language')
             if InvestorPassword == "":

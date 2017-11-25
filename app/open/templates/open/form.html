@@ -6,6 +6,7 @@
         {% csrf_token %}
         <div class="form-group"> <!-- Full Name -->
           <label for="full_name_id" class="control-label">Nombre</label>
+          <p> {{open.name}} </p>
           <input type="text" class="form-control" id="full_name_id" name="Name" placeholder="John Deer">
         </div>
 
@@ -24,6 +25,11 @@
           <input type="text" class="form-control" id="street2_id" name="Direcc2" placeholder="Apartment, suite, unit, building, floor, etc.">
         </div>
 
+        <div class="form-group"> <!-- Provincia-->
+          <label for="zip_id" class="control-label">Provincia</label>
+          <input type="text" class="form-control" id="State_id" name="State" placeholder="State">
+        </div>
+
         <div class="form-group"> <!-- City-->
           <label for="city_id" class="control-label">City</label>
           <input type="text" class="form-control" id="city_id" name="City" placeholder="Smallville">
@@ -35,7 +41,7 @@
         </div>
 
         <div class="form-group"> <!-- State Button -->
-          <label for="state_id" class="control-label">State</label>
+          <label for="state_id" class="control-label">Lenguage de notificaciones</label>
           <select class="form-control" id="state_id">
             <option value="EN">Ingles</option>
             <option value="RU">Ruso</option>
@@ -44,7 +50,7 @@
 
         <div class="form-group">
           <label for="email">Email address:</label>
-          <input type="email" name="email" class="form-control" id="email">
+          <input type="email" name="Email" class="form-control" id="email">
         </div>
 
         <div class="form-group">
@@ -52,6 +58,29 @@
           <input type="text" name="Phone" class="form-control input-medium bfh-phone" data-format="+1 (ddd) ddd-dddd">
           <span class="bfh-phone" data-format="+1 dddddddddd" data-number="15555555555"></span>
         </div>
+
+        {% if open.name == 'Real' or 'Demo' %}
+        <div class="form-group"> <!-- State Button -->
+          <label for="state_id" class="control-label">Tipo de cuenta</label>
+          <select name="AccountType" class="form-control" id="state_id">
+            {% for a in open.AccountType %}
+            <option value="{{a.value}}">{{a.name}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        {% endif %}
+
+        {% if open.name == 'Real' or 'Demo' %}
+        <div class="form-group"> <!-- State Button -->
+          <label for="state_id" class="control-label">Tipo de cuenta</label>
+          <select name="AccountCurrency" class="form-control" id="state_id">
+            {% for z in open.AccountCurrency %}
+            <option value="{{z.value}}">{{z.name}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        {% endif %}
+
         {{form.as_p}}
         <div class="form-group"> <!-- Submit Button -->
           <button type="submit" class="btn btn-primary">Enviar</button>
