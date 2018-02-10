@@ -3,7 +3,8 @@ FROM debian:stretch
 RUN apt-get update \
     && apt-get install -y \
     git wget nano \
-    python3 python3-pip zlib1g-dev libjpeg-dev
+    python3 python3-pip
+RUN apt-get install -y --no-install-recommends zlib1g-dev libjpeg-dev
 
 #RUN mkdir /var/instaforex \
 #    && cd /var/instaforex \
@@ -13,5 +14,6 @@ RUN apt-get update \
 RUN mkdir /var/instaforex
 COPY ./ /var/instaforex
 RUN pip3 install -r /var/instaforex/requirements.txt
-CMD python3 /var/instaforex/manage.py runserver
+WORKDIR /var/instaforex
+#CMD python3 /var/instaforex/manage.py runserver
 EXPOSE 8000
