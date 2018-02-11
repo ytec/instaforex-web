@@ -1,10 +1,12 @@
 FROM debian:stretch
 
+
 RUN apt-get update \
     && apt-get install -y \
-    git wget nano \
+    apt-utils git wget nano \
     python3 python3-pip
-RUN apt-get install -y --no-install-recommends zlib1g-dev libjpeg-dev
+RUN apt-get install -y --no-install-recommends \
+    zlib1g-dev libjpeg-dev
 
 #RUN mkdir /var/instaforex \
 #    && cd /var/instaforex \

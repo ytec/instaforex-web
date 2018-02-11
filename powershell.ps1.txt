@@ -1,1 +1,0 @@
-Set-NetConnectionProfile -Name 'Unidentified network' -NetworkCategory Private
