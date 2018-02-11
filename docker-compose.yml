@@ -12,7 +12,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: python3 manage.py runserver 0.0.0.0:8000 
+    command:  bash -c  "  python3 manage.py runserver 0.0.0.0:8001 > django.log  " 
     depends_on:
       - db
     ports:

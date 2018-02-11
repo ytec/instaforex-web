@@ -9,7 +9,7 @@ def openaccountReal(data):
 
     openaccountreal = client.factory.create('RealAccount')
 
-    openaccountreal.AccountType['value'] = None-
+    openaccountreal.AccountType['value'] = None #-
     #  (AccountType){
     #     value = None
     #     Standard = "Standard"
@@ -19,24 +19,24 @@ def openaccountReal(data):
     #     EuricaEUR = "EuricaEUR"
     #     EuricaRUR = "EuricaRUR"
     #  }
-    openaccountreal.Address = None-
-    openaccountreal.City = None-
-    openaccountreal.Country = None-
-    openaccountreal.Domain = None-
-    openaccountreal.Email = None-
+    openaccountreal.Address = None #-
+    openaccountreal.City = None #-
+    openaccountreal.Country = None #-
+    openaccountreal.Domain = None #-
+    openaccountreal.Email = None #-
     openaccountreal.IsForMassMarketing = None
     openaccountreal.Leverage = None
-    openaccountreal.Name = None-
-    openaccountreal.NotificationLanguage['value'] = "En"-
+    openaccountreal.Name = None #-
+    openaccountreal.NotificationLanguage['value'] = "En" #-
     # (Language){
     #  En = "En"
     #  Ru = "Ru"
     # }
-    openaccountreal.Phone = None-
+    openaccountreal.Phone = None #-
     openaccountreal.SendEducationalLetter = None
-    openaccountreal.State = None-
-    openaccountreal.ZipCode = None-
-    openaccountreal.AffiliateCode = None-
+    openaccountreal.State = None #-
+    openaccountreal.ZipCode = None #-
+    openaccountreal.AffiliateCode = None #-
     openaccountreal.Currency['value'] = None
     #   (AccountCurrency){
     #     value = None
