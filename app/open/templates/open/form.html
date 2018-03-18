@@ -42,7 +42,7 @@
 
         <div class="form-group"> <!-- State Button -->
           <label for="state_id" class="control-label">Lenguage de notificaciones</label>
-          <select class="form-control" id="state_id">
+          <select name="Language" class="form-control" id="state_id">
             <option value="EN">Ingles</option>
             <option value="RU">Ruso</option>
           </select>
@@ -72,7 +72,7 @@
 
         {% if open.name == 'Real' or 'Demo' %}
         <div class="form-group"> <!-- State Button -->
-          <label for="state_id" class="control-label">Tipo de cuenta</label>
+          <label for="state_id" class="control-label">Tipo de monedero</label>
           <select name="AccountCurrency" class="form-control" id="state_id">
             {% for z in open.AccountCurrency %}
             <option value="{{z.value}}">{{z.name}}</option>
@@ -84,6 +84,7 @@
         {{form.as_p}}
         <div class="form-group"> <!-- Submit Button -->
           <button type="submit" class="btn btn-primary">Enviar</button>
+
         </div>
       </form>
 

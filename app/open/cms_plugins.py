@@ -47,18 +47,18 @@ class Open(CMSPluginBase):
                     'value' : q[1]}
                 Dicc_AccountCurrency.append(f)
 
-            TraderType = client.factory.create('TraderType')
+            #TraderType = client.factory.create('TraderType')
 
-            for z in TraderType:
-                e = {'name' : z[0],
-                    'value' : z[1]}
-                Dicc_TraderType.append(e)
+            #for z in TraderType:
+            #    e = {'name' : z[0],
+            #        'value' : z[1]}
+            #    Dicc_TraderType.append(e)
 
             Dicc_name = { 'name' : FormName,
                           'AccountType' : Dicc_AccountType,
                           'Language' : Dicc_Language,
                           'AccountCurrency' : Dicc_AccountCurrency,
-                          'TraderType' : Dicc_TraderType,
+            #              'TraderType' : Dicc_TraderType,
                         }
 
         elif FormName == "Demo":
@@ -150,5 +150,7 @@ class Open(CMSPluginBase):
                         }
 
         context['open'] = Dicc_name
+        context['form'] = form
+        print(form)
         return context
 plugin_pool.register_plugin(Open)

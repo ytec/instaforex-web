@@ -1,6 +1,7 @@
 from django import forms
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
+from django.shortcuts import render
 
 from .models import OpenAccountReal, OpenAccountDemo, OpenAccountAnonymous
 from .form import FormModelAnonymus, FormModelDemo, FormModelReal
@@ -39,7 +40,7 @@ def openAccountReal(request):
             State = request.POST.get('State'),
             ZipCode = request.POST.get('ZipCode'),
             AffiliateCode = affiliatecCode,
-            Currency = request.POST.get('Currency'),
+            Currency = request.POST.get('AccountCurrency'),
             DateOfBirth = request.POST.get('DateOfBirth'),
 
             #Datos de los dispositivos ----->
@@ -47,6 +48,29 @@ def openAccountReal(request):
             #<-------------------------------
 
             Language = request.POST.get('language'),
+
+            #OpenAccountReal.AccountType = AccountType
+            #OpenAccountReal.Direcc = Direcc + Direcc2
+            #OpenAccountReal.Direcc2 = Direcc2
+            #OpenAccountReal.City = City
+            #OpenAccountReal.Country = Country
+
+            #OpenAccountReal.Email = Email
+            #OpenAccountReal.Leverage = Leverage
+            #OpenAccountReal.Name = Name
+            #OpenAccountReal.SurNames = SurNames
+            #OpenAccountReal.NotificationLanguage = NotificationLanguage
+            #OpenAccountReal.Phone = Phone
+            #OpenAccountReal.State = State
+            #OpenAccountReal.ZipCode =ZipCode
+
+            #OpenAccountReal.Currency = Currency
+            #OpenAccountReal.DateOfBirth = DateOfBirth
+
+            #OpenAccountReal.Language = Language
+
+
+            #  Model Data for form ------>
 
             OpenAccountReal.AccountType = AccountType
             OpenAccountReal.Direcc = Direcc
@@ -65,16 +89,25 @@ def openAccountReal(request):
 
             OpenAccountReal.Currency = Currency
             OpenAccountReal.DateOfBirth = DateOfBirth
-
+            OpenAccountReal.AffiliateCode = affiliatecCode
             OpenAccountReal.Language = Language
 
             OpenAccountReal.save()
+            # fin Model Data for form <----
+
 
             return HttpResponseRedirect('/es/')
         else:
             print('ssnot')
-            template = loader.get_template('open/form_direcc.html')
-            return HttpResponse(template.render(request))
+            return render(request, 'open/form_direcc.html', {
+            'form':form,
+            })
+            #template = loader.get_template('open/form_direcc.html')
+            #return HttpResponse(template.render(request))
+    else:
+        print('ssnot')
+        template = loader.get_template('open/form_direcc.html')
+        return HttpResponse(template.render(request))
 def openAccountDemo():
     if request.method == "POST":
         form = FormModelDemo(request.POST)
