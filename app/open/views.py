@@ -3,182 +3,220 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.shortcuts import render
 
+from suds.client import Client
+
 from .models import OpenAccountReal, OpenAccountDemo, OpenAccountAnonymous
 from .form import FormModelAnonymus, FormModelDemo, FormModelReal
 from .soapform import openaccountReal, openaccountDemo, openaccountAnonymous
 from .passworsrandom import id_generator
+from .cms_plugins import Open
+from .form_not_if import form_not_if_data
 
 
 def openAccountReal(request):
     if request.method == "POST":
-        print('post')
         form = FormModelReal(request.POST)
-        print(form.errors)
         if form.is_valid():
-            print('isvalit')
-            affiliatecCode = '1234'
 
-            AccountType = request.POST.get('AccountType'),
+            affiliatecCode = '1234'
+            data = []
+
+        #    AccountType = request.POST.get('AccountType'),
             #Tienen de estar unidos --------->
-            Direcc = request.POST.get('Direcc'),
-            Direcc2 = request.POST.get('Direcc2'),
+        #    Direcc = request.POST.get('Direcc'),
+        #    Direcc2 = request.POST.get('Direcc2'),
             #<-------------------------------
-            City = request.POST.get('City'),
-            Country = request.POST.get('Country'),
-            Domain = request.POST.get('Domain'),
-            Email = request.POST.get('Email'),
+        #    City = request.POST.get('City'),
+        #    Country = request.POST.get('Country'),
+        #    Domain = request.POST.get('Domain'),
+        #    Email = request.POST.get('Email'),
             #Nivel de apalancamiento ----->
-            Leverage = request.POST.get('Leverage'),
+        #    Leverage = request.POST.get('Leverage'),
             #<-----------------------------
             #Tienen de estar unidos --------->
-            Name = request.POST.get('Name'),
-            SurNames = request.POST.get('SurNames'),
+        #    Name = request.POST.get('Name'),
+        #    SurNames = request.POST.get('SurNames'),
             #<-------------------------------
-            NotificationLanguage = request.POST.get('NotificationLanguage'),
-            Phone = request.POST.get('Phone'),
+        #    NotificationLanguage = request.POST.get('NotificationLanguage'),
+        #    Phone = request.POST.get('Phone'),
 
-            State = request.POST.get('State'),
-            ZipCode = request.POST.get('ZipCode'),
-            AffiliateCode = affiliatecCode,
-            Currency = request.POST.get('AccountCurrency'),
-            DateOfBirth = request.POST.get('DateOfBirth'),
+        #    State = request.POST.get('State'),
+        #    ZipCode = request.POST.get('ZipCode'),
+        #    AffiliateCode = affiliatecCode,
+        #    Currency = request.POST.get('AccountCurrency'),
+        #    DateOfBirth = request.POST.get('DateOfBirth'),
 
             #Datos de los dispositivos ----->
 
             #<-------------------------------
 
-            Language = request.POST.get('language'),
+        #    Language = request.POST.get('Language'),
 
-            #OpenAccountReal.AccountType = AccountType
-            #OpenAccountReal.Direcc = Direcc + Direcc2
-            #OpenAccountReal.Direcc2 = Direcc2
-            #OpenAccountReal.City = City
-            #OpenAccountReal.Country = Country
+            data.AccountType = request.POST.get('AccountType'),
+            data.Direcc = request.POST.get('Direcc'),
+            data.Direcc2 = request.POST.get('Direcc2'),
+            data.City = request.POST.get('City'),
+            data.Country = request.POST.get('Country'),
 
-            #OpenAccountReal.Email = Email
-            #OpenAccountReal.Leverage = Leverage
-            #OpenAccountReal.Name = Name
-            #OpenAccountReal.SurNames = SurNames
-            #OpenAccountReal.NotificationLanguage = NotificationLanguage
-            #OpenAccountReal.Phone = Phone
-            #OpenAccountReal.State = State
-            #OpenAccountReal.ZipCode =ZipCode
+            data.Email =  request.POST.get('Email'),
+            data.Leverage = request.POST.get('Leverage'),
+            data.Name = request.POST.get('Name'),
+            data.SurNames = request.POST.get('SurNames'),
+            data.NotificationLanguage = request.POST.get('Language'),
+            data.Phone = request.POST.get('Phone'),
+            data.State = request.POST.get('State'),
+            data.ZipCode =  request.POST.get('ZipCode'),
 
-            #OpenAccountReal.Currency = Currency
-            #OpenAccountReal.DateOfBirth = DateOfBirth
-
-            #OpenAccountReal.Language = Language
-
+            data.Currency =  request.POST.get('AccountCurrency'),
+            data.DateOfBirth = request.POST.get('DateOfBirth'),
+            data.AffiliateCode = affiliatecCode,
+            data.Language = request.POST.get('Language'),
 
             #  Model Data for form ------>
+            openaccountreal = OpenAccountReal(
+            AccountType = request.POST.get('AccountType'),
+            Direcc = request.POST.get('Direcc'),
+            Direcc2 = request.POST.get('Direcc2'),
+            City = request.POST.get('City'),
+            Country = request.POST.get('Country'),
 
-            OpenAccountReal.AccountType = AccountType
-            OpenAccountReal.Direcc = Direcc
-            OpenAccountReal.Direcc2 = Direcc2
-            OpenAccountReal.City = City
-            OpenAccountReal.Country = Country
+            Email =  request.POST.get('Email'),
+            Leverage = request.POST.get('Leverage'),
+            Name = request.POST.get('Name'),
+            SurNames = request.POST.get('SurNames'),
+            NotificationLanguage = request.POST.get('Language'),
+            Phone = request.POST.get('Phone'),
+            State = request.POST.get('State'),
+            ZipCode =  request.POST.get('ZipCode'),
 
-            OpenAccountReal.Email = Email
-            OpenAccountReal.Leverage = Leverage
-            OpenAccountReal.Name = Name
-            OpenAccountReal.SurNames = SurNames
-            OpenAccountReal.NotificationLanguage = NotificationLanguage
-            OpenAccountReal.Phone = Phone
-            OpenAccountReal.State = State
-            OpenAccountReal.ZipCode =ZipCode
+            Currency =  request.POST.get('AccountCurrency'),
+            DateOfBirth = request.POST.get('DateOfBirth'),
+            AffiliateCode = affiliatecCode,
+            Language = request.POST.get('Language'),
+            )
 
-            OpenAccountReal.Currency = Currency
-            OpenAccountReal.DateOfBirth = DateOfBirth
-            OpenAccountReal.AffiliateCode = affiliatecCode
-            OpenAccountReal.Language = Language
-
-            OpenAccountReal.save()
             # fin Model Data for form <----
-
+            openaccountreal.save()
+            #openaccountReal(data)
 
             return HttpResponseRedirect('/es/')
         else:
-            print('ssnot')
+            Dicc_name_return = form_not_if_data.Real()
             return render(request, 'open/form_direcc.html', {
             'form':form,
+            'open':Dicc_name,
             })
             #template = loader.get_template('open/form_direcc.html')
             #return HttpResponse(template.render(request))
+            for d in Dicc_name_return.AccountType:
+                print(d)
     else:
-        print('ssnot')
-        template = loader.get_template('open/form_direcc.html')
-        return HttpResponse(template.render(request))
+        Dicc_name_return = form_not_if_data.Real()
+        return render(request, 'open/form_direcc.html', {
+        'open':Dicc_name_return,
+        })
+        for d in Dicc_name_return.AccountType:
+            print(d)
+
 def openAccountDemo():
     if request.method == "POST":
         form = FormModelDemo(request.POST)
         if FormModel.is_valid():
-            AccountType = request.POST.get('AccountType')
-            #Tienen de estar unidos --------->
-            Direcc = request.POST.get('Direcc')
-            Direcc2 = request.POST.get('Direcc2')
-            #<-------------------------------
-            City = request.POST.get('City')
-            Country = request.POST.get('Country')
-            Domain = request.POST.get('Domain')
-            Email = request.POST.get('Email')
+            affiliatecCode = '1234'
+            data = []
 
+        #    AccountType = request.POST.get('AccountType'),
+            #Tienen de estar unidos --------->
+        #    Direcc = request.POST.get('Direcc'),
+        #    Direcc2 = request.POST.get('Direcc2'),
+            #<-------------------------------
+        #    City = request.POST.get('City'),
+        #    Country = request.POST.get('Country'),
+        #    Domain = request.POST.get('Domain'),
+        #    Email = request.POST.get('Email'),
             #Nivel de apalancamiento ----->
-            Leverage = request.POST.get('Leverage')
+        #    Leverage = request.POST.get('Leverage'),
             #<-----------------------------
             #Tienen de estar unidos --------->
-            Name = request.POST.get('Name')
-            SurNames = request.POST.get('SurNames')
+        #    Name = request.POST.get('Name'),
+        #    SurNames = request.POST.get('SurNames'),
             #<-------------------------------
-            NotificationLanguage = request.POST.get('NotificationLanguage')
-            Phone = request.POST.get('Phone')
+        #    NotificationLanguage = request.POST.get('NotificationLanguage'),
+        #    Phone = request.POST.get('Phone'),
 
-            State = request.POST.get('State')
-            ZipCode = request.POST.get('ZipCode')
-            InitialDeposit = request.POST.get('InitialDeposit')
-            AffiliateCode = affiliatecCode
-            Currency = request.POST.get('Currency')
-
-            InvestorPassword = request.POST.get('InvestorPassword')
-
-            DateOfBirth = request.POST.get('DateOfBirth')
+        #    State = request.POST.get('State'),
+        #    ZipCode = request.POST.get('ZipCode'),
+        #    AffiliateCode = affiliatecCode,
+        #    Currency = request.POST.get('AccountCurrency'),
+        #    DateOfBirth = request.POST.get('DateOfBirth'),
 
             #Datos de los dispositivos ----->
 
             #<-------------------------------
 
-            OpenAccountDemo.AccountType = AccountType
-            OpenAccountDemo.Direcc = Direcc
-            OpenAccountDemo.Direcc2 = Direcc2
-            OpenAccountDemo.City = City
-            OpenAccountDemo.Country = Country
+        #    Language = request.POST.get('Language'),
 
-            OpenAccountDemo.Email = Email
-            OpenAccountDemo.Leverage = Leverage
-            OpenAccountDemo.Name = Name
-            OpenAccountDemo.SurNames = SurNames
-            OpenAccountDemo.NotificationLanguage = NotificationLanguage
-            OpenAccountDemo.Phone = Phone
-            OpenAccountDemo.State = State
-            OpenAccountDemo.ZipCode =ZipCode
+            data.AccountType = request.POST.get('AccountType'),
+            data.Direcc = request.POST.get('Direcc'),
+            data.Direcc2 = request.POST.get('Direcc2'),
+            data.City = request.POST.get('City'),
+            data.Country = request.POST.get('Country'),
 
-            OpenAccountDemo.InitialDeposit = InitialDeposit
-            OpenAccountDemo.Currency = Currency
+            data.Email =  request.POST.get('Email'),
+            data.Leverage = request.POST.get('Leverage'),
+            data.Name = request.POST.get('Name'),
+            data.SurNames = request.POST.get('SurNames'),
+            data.NotificationLanguage = request.POST.get('Language'),
+            data.Phone = request.POST.get('Phone'),
+            data.State = request.POST.get('State'),
+            data.ZipCode =  request.POST.get('ZipCode'),
 
-            OpenAccountDemo.InvestorPassword = InvestorPassword
+            data.Currency =  request.POST.get('AccountCurrency'),
+            data.DateOfBirth = request.POST.get('DateOfBirth'),
+            data.AffiliateCode = affiliatecCode,
+            data.Language = request.POST.get('Language'),
 
-            OpenAccountDemo.DateOfBirth = DateOfBirth
+            #  Model Data for form ------>
+            openaccountreal = OpenAccountReal(
+            AccountType = request.POST.get('AccountType'),
+            Direcc = request.POST.get('Direcc'),
+            Direcc2 = request.POST.get('Direcc2'),
+            City = request.POST.get('City'),
+            Country = request.POST.get('Country'),
 
-            OpenAccountDemo.Language = Language
+            Email =  request.POST.get('Email'),
+            Leverage = request.POST.get('Leverage'),
+            Name = request.POST.get('Name'),
+            SurNames = request.POST.get('SurNames'),
+            NotificationLanguage = request.POST.get('Language'),
+            Phone = request.POST.get('Phone'),
+            State = request.POST.get('State'),
+            ZipCode =  request.POST.get('ZipCode'),
 
-            OpenAccountDemo.save()
+            Currency =  request.POST.get('AccountCurrency'),
+            DateOfBirth = request.POST.get('DateOfBirth'),
+            AffiliateCode = affiliatecCode,
+            Language = request.POST.get('Language'),
+            )
 
+            # fin Model Data for form <----
+            openaccountreal.save()
+            #openaccountReal(data)
 
-            language = request.POST.get('language')
-            if InvestorPassword == "":
-                InvestorPassword = id_generator()
-            else:
-                pass
-            pass
+            return HttpResponseRedirect('/es/')
+        else:
+            Dicc_name_return = form_not_if.Demo()
+            return render(request, 'open/form_direcc.html', {
+            'form':form,
+            'open':Dicc_name,
+            })
+            #template = loader.get_template('open/form_direcc.html')
+            #return HttpResponse(template.render(request))
+    else:
+        Dicc_name_return = form_not_if.Demo()
+        return render(request, 'open/form_direcc.html', {
+        'open':Dicc_name_return,
+        })
 
 def openAccountAnonymous():
     if request.method == "POST":

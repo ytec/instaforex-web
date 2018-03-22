@@ -1,22 +1,141 @@
-<h1> Hola  form_direcc.html</h1>
-{% if form.errors %}
-    {% for field in form %}
-        {% for error in field.errors %}
-            <div class="alert alert-danger">
-                <strong>{{ error|escape }}</strong>
-            </div>
-        {% endfor %}
-    {% endfor %}
-    {% for error in form.non_field_errors %}
-        <div class="alert alert-danger">
-            <strong>{{ error|escape }}</strong>
-        </div>
-    {% endfor %}
-{% endif %}
-{{form.non_field_errors}}
-  <div class="fieldwrapper">
-    {{form.AccountCurrency.errors}}
-    <label for="{{form.AccountCurrency.id_for_label}}">AccountCurrency not:</lebel>
-      {{ form.Currency }}
-      {{ form.Name }}
+{% extends 'Home.html' %}
+
+{% block openaccount %}
+  <div class="content container">
+    <div class="row">
+      <div class="col-md-8">
+        <form action="{% url open.name %}"  method="post" >
+          {% csrf_token %}
+          <div class="form-group"> <!-- Full Name -->
+            <label for="full_name_id" class="control-label">Nombre</label>
+            <p>  {{ form.Name.errors }}</p>
+            <input type="text" class="form-control" id="full_name_id" name="Name" placeholder="Nombre">
+          </div>
+
+          <div class="form-group"> <!-- Full Name -->
+            <label for="full_name_id" class="control-label">Apellidos</label>
+            <p>  {{ form.SurNames.errors }}</p>
+            <input type="text" class="form-control" id="full_name_id" name="SurName" placeholder="Apellidos">
+          </div>
+
+          <div class="form-group"> <!-- Street 1 -->
+            <label for="street1_id" class="control-label">Direccion</label>
+            <p>  {{ form.Direcc.errors }}</p>
+            <input type="text" class="form-control" id="street1_id" name="Direcc" placeholder="Direccion">
+          </div>
+
+          <div class="form-group"> <!-- Street 2 -->
+            <label for="street2_id" class="control-label">Direccion Numero, piso, puerta...</label>
+            <p>  {{ form.Direcc2.errors }}</p>
+            <input type="text" class="form-control" id="street2_id" name="Direcc2" placeholder="Direccion Numero, piso, puerta...">
+          </div>
+
+          <div class="form-group"> <!-- Provincia-->
+            <label for="State_id" class="control-label">Provincia</label>
+            <p>  {{ form.State.errors }}</p>
+            <input type="text" class="form-control" id="State_id" name="State" placeholder="Estado o Provincia">
+          </div>
+
+          <div class="form-group"> <!-- City-->
+            <label for="city_id" class="control-label">Poblacion</label>
+            <p>  {{ form.City.errors }}</p>
+            <input type="text" class="form-control" id="city_id" name="City" placeholder="Ciudad o pueblo">
+          </div>
+
+          <div class="form-group"> <!-- Zip Code-->
+            <label for="zip_id" class="control-label">Codigo postal</label>
+            <p>  {{ form.ZipCode.errors }}</p>
+            <input type="text" class="form-control" id="zip_id" name="ZipCode" placeholder="#####">
+          </div>
+
+          <div class="form-group"> <!-- City-->
+            <label for="city_id" class="control-label">País</label>
+            <p>  {{ form.Country.errors }}</p>
+            <input type="text" class="form-control" id="Country_id" name="Country" placeholder="País">
+          </div>
+
+          <div class="form-group"> <!-- State Button -->
+            <label for="state_id" class="control-label">Lenguage de notificaciones</label>
+            <p>  {{ form.Language.errors }}</p>
+            <select name="Language" class="form-control" id="state_id">
+              <option value="EN">Ingles</option>
+              <option value="RU">Ruso</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Direccion de correo electronico:</label>
+            <p>  {{ form.email.errors }}</p>
+            <input type="email" name="Email" class="form-control" id="email">
+          </div>
+
+          <div class="form-group">
+            <label for="Phone" class="control-label">Numero de telefono</label>
+            <p>  {{ form.Phone.errors }}</p>
+            <input type="text" name="+1234567890" class="form-control input-medium bfh-phone" data-format="+1 (ddd) ddd-dddd">
+            <span class="bfh-phone" data-format="+1 dddddddddd" data-number="15555555555"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="state_id"  class="control-label">Fecha de nacimiento: </label>
+            <p> {{ form.DateOfBirth.errors }}</p>
+            <input type="date" class="form-control" name="DateOfBirth" value="{{placement.date|date:"Y-m-d" }}">
+          </div>
+
+
+          {% if open.name == 'Real' or 'Demo' %}
+          <div class="form-group"> <!-- State Button -->
+            <label for="state_id" class="control-label">Tipo de cuenta</label>
+            <p>  {{ form.AccountType.errors }}</p>
+            <select name="AccountType" class="form-control" id="state_id">
+              {% for a in open.AccountType %}
+              <option value="{{a.value}}">{{a.name}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          {% endif %}
+
+          {% if open.name == 'Real' or 'Demo' %}
+          <div class="form-group"> <!-- State Button -->
+            <label for="state_id" class="control-label">Tipo de monedero</label>
+            <p>  {{ form.AccountCurrency.errors }}</p>
+            <select name="AccountCurrency" class="form-control" id="state_id">
+              {% for z in open.AccountCurrency %}
+              <option value="{{z.value}}">{{z.name}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          {% endif %}
+          {% if open.name == 'Real' or 'Demo' %}
+          <div class="form-group"> <!-- State Button -->
+            <label for="state_id" class="control-label">Apalancamiento</label>
+            <p>  {{ form.Leverage.errors }}</p>
+            <select name="Leverage" class="form-control" id="state_id">
+              <option value="1">1</option>
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+              <option value="200">200</option>
+              <option value="500">500</option>
+              <option value="1000">1000</option>
+            </select>
+          </div>
+
+          {% endif %}
+
+          <div class="form-group"> <!-- State Button -->
+            <input type="hidden" name="AffiliateCode" value="1234">
+          </div>
+
+          <div class="form-group"> <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">Enviar</button>
+
+          </div>
+        </form>
+
+      </div>
+    </div>
   </div>
+{% endblock openaccount %}

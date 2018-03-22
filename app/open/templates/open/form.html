@@ -1,93 +1,141 @@
+{% extends 'Home.html' %}
 
-<div class="content container">
-  <div class="row">
-    <div class="col-md-8">
-      <form action="{% url open.name %}"  method="post" >
-        {% csrf_token %}
-        <div class="form-group"> <!-- Full Name -->
-          <label for="full_name_id" class="control-label">Nombre</label>
-          <p> {{open.name}} </p>
-          <input type="text" class="form-control" id="full_name_id" name="Name" placeholder="John Deer">
-        </div>
+{% block openaccount %}
+  <div class="content container">
+    <div class="row">
+      <div class="col-md-8">
+        <form action="{% url open.name %}"  method="post" >
+          {% csrf_token %}
+          <div class="form-group"> <!-- Full Name -->
+            <label for="full_name_id" class="control-label">Nombre</label>
+            <p>  {{ form.Name.errors }}</p>
+            <input type="text" class="form-control" id="full_name_id" name="Name" placeholder="John Deer">
+          </div>
 
-        <div class="form-group"> <!-- Full Name -->
-          <label for="full_name_id" class="control-label">Apellidos</label>
-          <input type="text" class="form-control" id="full_name_id" name="SurNames" placeholder="John Deer">
-        </div>
+          <div class="form-group"> <!-- Full Name -->
+            <label for="full_name_id" class="control-label">Apellidos</label>
+            <p>  {{ form.SurNames.errors }}</p>
+            <input type="text" class="form-control" id="full_name_id" name="SurNames" placeholder="John Deer">
+          </div>
 
-        <div class="form-group"> <!-- Street 1 -->
-          <label for="street1_id" class="control-label">Street Address 1</label>
-          <input type="text" class="form-control" id="street1_id" name="Direcc" placeholder="Street address, P.O. box, company name, c/o">
-        </div>
+          <div class="form-group"> <!-- Street 1 -->
+            <label for="street1_id" class="control-label">Street Address 1</label>
+            <p>  {{ form.Direcc.errors }}</p>
+            <input type="text" class="form-control" id="street1_id" name="Direcc" placeholder="Street address, P.O. box, company name, c/o">
+          </div>
 
-        <div class="form-group"> <!-- Street 2 -->
-          <label for="street2_id" class="control-label">Street Address 2</label>
-          <input type="text" class="form-control" id="street2_id" name="Direcc2" placeholder="Apartment, suite, unit, building, floor, etc.">
-        </div>
+          <div class="form-group"> <!-- Street 2 -->
+            <label for="street2_id" class="control-label">Street Address 2</label>
+            <p>  {{ form.Direcc2.errors }}</p>
+            <input type="text" class="form-control" id="street2_id" name="Direcc2" placeholder="Apartment, suite, unit, building, floor, etc.">
+          </div>
 
-        <div class="form-group"> <!-- Provincia-->
-          <label for="zip_id" class="control-label">Provincia</label>
-          <input type="text" class="form-control" id="State_id" name="State" placeholder="State">
-        </div>
+          <div class="form-group"> <!-- Provincia-->
+            <label for="State_id" class="control-label">Provincia</label>
+            <p>  {{ form.State.errors }}</p>
+            <input type="text" class="form-control" id="State_id" name="State" placeholder="State">
+          </div>
 
-        <div class="form-group"> <!-- City-->
-          <label for="city_id" class="control-label">City</label>
-          <input type="text" class="form-control" id="city_id" name="City" placeholder="Smallville">
-        </div>
+          <div class="form-group"> <!-- City-->
+            <label for="city_id" class="control-label">Poblacion</label>
+            <p>  {{ form.City.errors }}</p>
+            <input type="text" class="form-control" id="city_id" name="City" placeholder="Smallville">
+          </div>
 
-        <div class="form-group"> <!-- Zip Code-->
-          <label for="zip_id" class="control-label">Zip Code</label>
-          <input type="text" class="form-control" id="zip_id" name="ZipCode" placeholder="#####">
-        </div>
+          <div class="form-group"> <!-- Zip Code-->
+            <label for="zip_id" class="control-label">Zip Code</label>
+            <p>  {{ form.ZipCode.errors }}</p>
+            <input type="text" class="form-control" id="zip_id" name="ZipCode" placeholder="#####">
+          </div>
 
-        <div class="form-group"> <!-- State Button -->
-          <label for="state_id" class="control-label">Lenguage de notificaciones</label>
-          <select name="Language" class="form-control" id="state_id">
-            <option value="EN">Ingles</option>
-            <option value="RU">Ruso</option>
-          </select>
-        </div>
+          <div class="form-group"> <!-- City-->
+            <label for="city_id" class="control-label">País</label>
+            <p>  {{ form.Country.errors }}</p>
+            <input type="text" class="form-control" id="Country_id" name="Country" placeholder="España">
+          </div>
 
-        <div class="form-group">
-          <label for="email">Email address:</label>
-          <input type="email" name="Email" class="form-control" id="email">
-        </div>
+          <div class="form-group"> <!-- State Button -->
+            <label for="state_id" class="control-label">Lenguage de notificaciones</label>
+            <p>  {{ form.Language.errors }}</p>
+            <select name="Language" class="form-control" id="state_id">
+              <option value="EN">Ingles</option>
+              <option value="RU">Ruso</option>
+            </select>
+          </div>
 
-        <div class="form-group">
-          <label for="Phone" class="control-label">Telephone</label>
-          <input type="text" name="Phone" class="form-control input-medium bfh-phone" data-format="+1 (ddd) ddd-dddd">
-          <span class="bfh-phone" data-format="+1 dddddddddd" data-number="15555555555"></span>
-        </div>
+          <div class="form-group">
+            <label for="email">Email address:</label>
+            <p>  {{ form.email.errors }}</p>
+            <input type="email" name="Email" class="form-control" id="email">
+          </div>
 
-        {% if open.name == 'Real' or 'Demo' %}
-        <div class="form-group"> <!-- State Button -->
-          <label for="state_id" class="control-label">Tipo de cuenta</label>
-          <select name="AccountType" class="form-control" id="state_id">
-            {% for a in open.AccountType %}
-            <option value="{{a.value}}">{{a.name}}</option>
-            {% endfor %}
-          </select>
-        </div>
-        {% endif %}
+          <div class="form-group">
+            <label for="Phone" class="control-label">Telephone</label>
+            <p>  {{ form.Phone.errors }}</p>
+            <input type="text" name="Phone" class="form-control input-medium bfh-phone" data-format="+1 (ddd) ddd-dddd">
+            <span class="bfh-phone" data-format="+1 dddddddddd" data-number="15555555555"></span>
+          </div>
 
-        {% if open.name == 'Real' or 'Demo' %}
-        <div class="form-group"> <!-- State Button -->
-          <label for="state_id" class="control-label">Tipo de monedero</label>
-          <select name="AccountCurrency" class="form-control" id="state_id">
-            {% for z in open.AccountCurrency %}
-            <option value="{{z.value}}">{{z.name}}</option>
-            {% endfor %}
-          </select>
-        </div>
-        {% endif %}
+          <div class="form-group">
+            <label for="state_id"  class="control-label">Fecha de nacimiento: </label>
+            <p> {{ form.DateOfBirth.errors }}</p>
+            <input type="date" class="form-control" name="DateOfBirth" value="{{placement.date|date:"Y-m-d" }}">
+          </div>
 
-        {{form.as_p}}
-        <div class="form-group"> <!-- Submit Button -->
-          <button type="submit" class="btn btn-primary">Enviar</button>
 
-        </div>
-      </form>
+          {% if open.name == 'Real' or 'Demo' %}
+          <div class="form-group"> <!-- State Button -->
+            <label for="state_id" class="control-label">Tipo de cuenta</label>
+            <p>  {{ form.AccountType.errors }}</p>
+            <select name="AccountType" class="form-control" id="state_id">
+              {% for a in open.AccountType %}
+              <option value="{{a.value}}">{{a.name}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          {% endif %}
 
+          {% if open.name == 'Real' or 'Demo' %}
+          <div class="form-group"> <!-- State Button -->
+            <label for="state_id" class="control-label">Tipo de monedero</label>
+            <p>  {{ form.AccountCurrency.errors }}</p>
+            <select name="AccountCurrency" class="form-control" id="state_id">
+              {% for z in open.AccountCurrency %}
+              <option value="{{z.value}}">{{z.name}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          {% endif %}
+          {% if open.name == 'Real' or 'Demo' %}
+          <div class="form-group"> <!-- State Button -->
+            <label for="state_id" class="control-label">Apalancamiento</label>
+            <p>  {{ form.Leverage.errors }}</p>
+            <select name="Leverage" class="form-control" id="state_id">
+              <option value="1">1</option>
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+              <option value="200">200</option>
+              <option value="500">500</option>
+              <option value="1000">1000</option>
+            </select>
+          </div>
+
+          {% endif %}
+
+          <div class="form-group"> <!-- State Button -->
+            <input type="hidden" name="AffiliateCode" value="1234">
+          </div>
+
+          <div class="form-group"> <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">Enviar</button>
+
+          </div>
+        </form>
+
+      </div>
     </div>
   </div>
-</div>
+{% endblock openaccount %}

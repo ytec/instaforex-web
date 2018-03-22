@@ -27,17 +27,17 @@ def openaccountReal(data):
     openaccountreal.IsForMassMarketing = None
     openaccountreal.Leverage = data.Leverage
     openaccountreal.Name = data.Name #-
-    openaccountreal.NotificationLanguage['value'] = "En" #-
+    openaccountreal.NotificationLanguage['value'] = data.NotificationLanguage #-
     # (Language){
     #  En = "En"
     #  Ru = "Ru"
     # }
-    openaccountreal.Phone = None #-
+    openaccountreal.Phone = data.Phone #-
     openaccountreal.SendEducationalLetter = None
-    openaccountreal.State = None #-
-    openaccountreal.ZipCode = None #-
-    openaccountreal.AffiliateCode = None #-
-    openaccountreal.Currency['value'] = None
+    openaccountreal.State = data.State #-
+    openaccountreal.ZipCode = data.ZipCode #-
+    openaccountreal.AffiliateCode = data.AffiliateCode #-
+    openaccountreal.Currency['value'] = data.Currency
     #   (AccountCurrency){
     #     value = None
     #     USD = "USD"
@@ -46,7 +46,7 @@ def openaccountReal(data):
     #     USC = "USC"
     #     EUC = "EUC"
     # }
-    openaccountreal.DateOfBirth = None
+    openaccountreal.DateOfBirth = data.DateOfBirth
     openaccountreal.IsDesktop = None
     openaccountreal.MobilePhoneOs = None
     openaccountreal.Os = None

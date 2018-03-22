@@ -56,7 +56,7 @@ class FormModelReal(forms.Form):
     Name = forms.CharField(max_length=25,initial="Name")
     SurNames = forms.CharField(max_length=100,initial="SurName")
     Direcc = forms.CharField(max_length=100,initial="Direcc")
-    Direcc2 = forms.CharField(max_length=100,initial="Direcc2")
+    Direcc2 = forms.CharField(max_length=100,initial="Direcc2", required=False)
     City = forms.CharField(max_length=30,initial="City")
     ZipCode = forms.CharField(max_length=10,initial="ZipCode")
     Country = forms.CharField(max_length=30,initial="Country")
